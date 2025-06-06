@@ -72,4 +72,4 @@ You can now use the `heroku` CLI program - try running `heroku apps` to confirm 
 3. Select your repository name and click Search. Once it is found, click Connect.
 4. Select the branch you want to deploy, then click Deploy Branch.
 5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+6. If the slug size is too large then add large files not required for the app to the .slugignore file
