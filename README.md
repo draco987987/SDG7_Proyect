@@ -1,20 +1,32 @@
-# Project XYZ
+# Project SDG7 Tracking Global Energy Access and Sustainability
 
-**Project XYZ** is a comprehensive data analysis tool designed to streamline data exploration, analysis, and visualisation. The tool supports multiple data formats and provides an intuitive interface for both novice and expert data scientists.
+**Project SDG7** is a comprehensive data analysis tool designed to streamline data exploration, analysis, and visualisation. The tool supports multiple data formats and provides an intuitive interface for both novice and expert data scientists.
 
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 
 ## Dataset Content
-* Describe your dataset. Choose a dataset of reasonable size to avoid exceeding the repository's maximum size of 100Gb.
+* This project uses a public dataset on global energy indicators, covering multiple countries over the past decades. The data includes:
+- Access to electricity (% of population)
+- Access to clean fuels for cooking
+- Renewable electricity capacity per capita
+- Share of renewables in final energy consumption
+- CO2 emissions, energy intensity, and more.
 
+The dataset has been cleaned and preprocessed using Python (Pandas) and is stored
 
 ## Business Requirements
-* Describe your business requirements
+* The dashboard aims to:
+1. Identify countries and regions lagging behind in access to sustainable energy.
+2. Visualise progress over time toward the UN's SDG 7 targets.
+3. Provide actionable insights for policymakers and NGOs focused on energy access.
+4. Allow comparisons between regions using interactive elements and clear data storytelling.
 
 
 ## Hypothesis and how to validate?
 * List here your project hypothesis(es) and how you envision validating it (them) 
+- Hypothesis 1: Regions with lower GDP per capita tend to have lower access to clean energy.
+- Hypothesis 2: Countries with higher renewable electricity capacity per capita have a faster rate of improvement in electricity access.
 
 ## Project Plan
 * Outline the high-level steps taken for the analysis.
