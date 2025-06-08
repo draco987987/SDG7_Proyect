@@ -25,8 +25,17 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and is store
 
 ## Hypothesis and how to validate?
 * List here your project hypothesis(es) and how you envision validating it (them) 
-- Hypothesis 1: Regions with lower GDP per capita tend to have lower access to clean energy.
-- Hypothesis 2: Countries with higher renewable electricity capacity per capita have a faster rate of improvement in electricity access.
+- **Hypothesis 1:** Regions with lower GDP per capita tend to have lower access to clean energy.  
+  **Validation:** Use scatter plots and correlation analysis between `gdp_per_capita` and both `access_to_electricity` and `access_to_clean_fuels`. Group comparisons by region can also highlight inequality patterns.
+
+- **Hypothesis 2:** Countries with higher renewable electricity capacity per capita have a faster rate of improvement in electricity access.  
+  **Validation:** Compare trends over time for each country using line plots for `renewable_capacity_per_capita` and `access_to_electricity`, and compute their annual growth rates.
+
+- **Hypothesis 3:** Countries with a higher share of renewable electricity tend to have lower energy intensity levels.  
+  **Validation:** Calculate Pearson correlation between `renewable_energy_share` and `energy_intensity`. Support the analysis with a scatter plot and trendline. Optionally, segment results by continent or income level.
+
+- **Hypothesis 4:** Countries that increased their renewable electricity capacity per capita also showed a reduction in CO₂ emissions.  
+  **Validation:** Calculate year-over-year changes for both `renewable_capacity_per_capita` and `co2_emissions_kt`, and visualise them using a time series or bar chart. Identify cases where renewables increase while emissions decrease simultaneously.
 
 ## Project Plan
 * Outline the high-level steps taken for the analysis.
