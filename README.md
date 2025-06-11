@@ -13,7 +13,7 @@
 - Share of renewables in final energy consumption
 - CO2 emissions, energy intensity, and more.
 
-The dataset has been cleaned and preprocessed using Python (Pandas) and is stored
+The dataset has been cleaned and preprocessed using Python (Pandas) and exported to structured CSVs.
 
 ## Business Requirements
 * The dashboard aims to:
@@ -24,36 +24,48 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and is store
 
 
 ## Hypothesis and how to validate?
-* List here your project hypothesis(es) and how you envision validating it (them) 
-- **Hypothesis 1:** Regions with lower GDP per capita tend to have lower access to clean energy.  
-  **Validation:** Use scatter plots and correlation analysis between `gdp_per_capita` and both `access_to_electricity` and `access_to_clean_fuels`. Group comparisons by region can also highlight inequality patterns.
+- **Hypothesis 1:** Regions with lower GDP per capita tend to have lower access to clean energy.
+   *Validation:* Scatter plots and correlation analysis confirm this with moderate positive correlation.
 
-- **Hypothesis 2:** Countries with higher renewable electricity capacity per capita have a faster rate of improvement in electricity access.  
-  **Validation:** Compare trends over time for each country using line plots for `renewable_capacity_per_capita` and `access_to_electricity`, and compute their annual growth rates.
+- **Hypothesis 2:** Countries with higher renewable electricity capacity per capita improve electricity access faster.
+   *Validation:* Time series trends and growth rates show weak correlation; not strongly supported.
 
-- **Hypothesis 3:** Countries with a higher share of renewable electricity tend to have lower energy intensity levels.  
-  **Validation:** Calculate Pearson correlation between `renewable_energy_share` and `energy_intensity`. Support the analysis with a scatter plot and trendline. Optionally, segment results by continent or income level.
+- **Hypothesis** 3: Higher renewable energy share is linked to lower energy intensity.
+   *Validation:* Scatter plots reveal weak positive correlation; structural inefficiencies play a stronger role.
 
-- **Hypothesis 4:** Countries that increased their renewable electricity capacity per capita also showed a reduction in CO₂ emissions.  
-  **Validation:** Calculate year-over-year changes for both `renewable_capacity_per_capita` and `co2_emissions_kt`, and visualise them using a time series or bar chart. Identify cases where renewables increase while emissions decrease simultaneously.
+- **Hypothesis 4:** Increases in renewable capacity reduce CO2 emissions.
+   *Validation:* Data does not support this uniformly; economic growth can offset renewable benefits.
 
 ## Project Plan
-* Outline the high-level steps taken for the analysis.
-* How was the data managed throughout the collection, processing, analysis and interpretation steps?
-* Why did you choose the research methodologies you used?
+* **step 1:** Dataset Acquisition and exploratory data analysis. 
+* **step 2:** Data cleaning, formatting, renaming colums and dropping unused variables. 
+* **step 3:** Hypotheses testing and visual analytics (Correlation, growth rates, violinplots, choropleths)
+* **step 4:** Machine Learning using Random Forest to predict 2025 and 2030 access and emissions.
+* **step 5:** Evaluation of model (R², MAE, RMSE) and export predictions
+* **step 6:** Dashboard creation (In progress).
 
 ## The rationale to map the business requirements to the Data Visualisations
-* List your business requirements and a rationale to map them to the Data Visualisations
+* Choropleth maps: global visualisation of electricity access by year.
+* Violin plots: distribution of GDP per capita by access groups.
+* Correlation matrix: reveal underlying relationships.
+* Scatter plots: support hypotheses with trendlines.
+* Time series line charts: progress over decades.
 
 ## Analysis techniques used
-* List the data analysis methods used and explain limitations or alternative approaches.
-* How did you structure the data analysis techniques. Justify your response.
-* Did the data limit you, and did you use an alternative approach to meet these challenges?
-* How did you use generative AI tools to help with ideation, design thinking and code optimisation?
+* Data cleaning (Pandas)
+* Descriptive Statistics (mean, median, std dev)
+* Hypothesis testing (Correlation)
+* visualisation (Seaborn, Plotly, Matplotlib)
+* Predictive modelling (Random Forest Regressor)
+* Model evaluation (R²,Mae, RMSE)
+* The data has its problems, i have spend a lot of time cleaning and thinking what was the most optimate methot to clean the nan values, also i have a lot of problems with the creation of the random forest, it required much time online to see how i could do it
+* ChatGPT was used for ideation, code debugging, Markdwon generation and phrasing.
 
 ## Ethical considerations
-* Were there any data privacy, bias or fairness issues with the data?
-* How did you overcome any legal or societal issues?
+* The dataset is public and anonymised.
+* Bias may arise from lack of regional granularity (Rural vs urban).
+* The model reflects historical trends and may not capture conflict or policy changes.
+* Predictions should not be used for critical planning without expert review.
 
 ## Dashboard Design
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
@@ -62,13 +74,12 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and is store
 * Explain how the dashboard was designed to communicate complex data insights to different audiences. 
 
 ## Unfixed Bugs
-* Please mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation are not valid reasons to leave bugs unfixed.
-* Did you recognise gaps in your knowledge, and how did you address them?
-* If applicable, include evidence of feedback received (from peers or instructors) and how it improved your approach or understanding.
+* None affecting core functionality.
+* Some outiliers in CO2 emissions skew model variance. Considered normal due to economic disparity.
 
 ## Development Roadmap
-* What challenges did you face, and what strategies were used to overcome these challenges?
-* What new skills or tools do you plan to learn next based on your project experience? 
+* Large gaps in raw dataset (Handled via interpolation).
+* Correlations were weaker than expected, requiring broader feature engineering.
 
 ## Deployment
 ### Heroku
@@ -86,13 +97,17 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and is store
 
 
 ## Main Data Analysis Libraries
-* Here you should list the libraries you used in the project and provide an example(s) of how you used these libraries.
+* **Pandas** - for data handling and cleaning.
+* **Numpy** - numerical operations
+* **Matplotlib, Seaborn** - visualisation
+* **Plotly.express** - interactive charts
+* **Sklearn** - Random Forest, metrics
 
 
 ## Credits 
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
+* Dataset source: https://www.kaggle.com/datasets/anshtanwar/global-data-on-sustainable-energy
+* Code snippets inspired by Code Institute templates and online threads
 
 ### Content 
 
@@ -107,5 +122,5 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and is store
 
 
 
-## Acknowledgements (optional)
-* Thank the people who provided support through this project.
+## Acknowledgements
+* Thank to Code Institute mentors for iterative feedback, explanations and support
