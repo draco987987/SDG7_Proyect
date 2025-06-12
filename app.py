@@ -173,6 +173,9 @@ elif page == "Dashboard":
     st.title(" Global Trends Dashboard")
 # ------------------ visual 1 ------------------
     st.subheader("Access to Electricity Over Time")
+    st.markdown("""
+    Displays the evolution of access to electricity access (% of population) from 2000 to 2020 for selected countries.
+    """)
     countries_to_plot = st.multiselect("Select countries", df_cleaned["country"].unique(), default=["India", "Kenya", "Germany"], key="electricity_countries")
     df_filtered = df_cleaned[df_cleaned["country"].isin(countries_to_plot)]
     fig1 = px.line(df_filtered, x="year", y="access_to_electricity", color="country", title="Access to Electricity Over Time")
@@ -180,7 +183,9 @@ elif page == "Dashboard":
 
     st.subheader("Access to Electricity Change by Year")
     year_map = st.selectbox("Select a year", [2000, 2010, 2020, 2030])
-    
+    st.markdown("""
+    Shows the percentage of the population with access to electricity by country for a selected year (2000, 2010, 2020, or 2030). Darker colors indicate higher access levels. This map allows for global comparisons at a glance.
+    """)
     if year_map == 2030:
         map_df = df_pred_2030.copy()
         map_df["access_to_electricity"] = df_pred_2030["access_to_electricity"]
@@ -194,12 +199,16 @@ elif page == "Dashboard":
     st.plotly_chart(fig_map, use_container_width=True)
 
     st.subheader("Renewable Capacity vs Access to Electricity")
+    st.markdown("""
+    Examines the correlation between renewable electricity capacity per capita (in Watts) and access to electricity. This helps determine whether investment in renewables correlates with broader electrification.""")
     df_2020_features = df_cleaned[df_cleaned["year"] == 2020]
     fig3 = px.scatter(df_2020_features, x="renewable_capacity_per_capita", y="access_to_electricity",
                      color="country", trendline="ols", title="Renewable Capacity vs Electricity Access (2020)")
     st.plotly_chart(fig3, use_container_width=True, key="chart_scatter")
 
     st.subheader("CO₂ Emissions Distribution in 2020")
+    st.markdown(""" Shows the spread and outliers of CO₂ emissions (in kilotonnes) across countries in 2020. It highlights countries with extremely high or low emission values and the median range.
+""")
     df_2020_features = df_cleaned[df_cleaned["year"] == 2020]
 
     fig4 = px.box(df_2020_features, y="co2_emissions_kt", title="Distribution of CO₂ Emissions")
@@ -207,14 +216,20 @@ elif page == "Dashboard":
 
     # Histogram of CO₂ emissions
     fig_hist_co2 = px.histogram(df_2020_features, x="co2_emissions_kt", nbins=50, title="Histogram of CO₂ Emissions (2020)")
+    st.markdown("""Displays the distribution of countries based on their CO₂ emissions in 2020. Useful to understand how emissions are concentrated across different emission ranges.
+""")
     st.plotly_chart(fig_hist_co2, use_container_width=True)
 
     # Box plot of CO₂ emissions by region
+    st.markdown("""Compares CO₂ emission levels grouped by continent. This allows users to spot regional disparities and understand the geographic distribution of climate impact.
+""")
     fig_box_region = px.box(df_2020_features, x="region", y="co2_emissions_kt", color="region",
                              title="CO₂ Emissions by Region (2020)", points="all", hover_name="country")
     st.plotly_chart(fig_box_region, use_container_width=True)
 
     # Divide CO₂ emissions into quartiles
+    st.markdown("""Divides countries into quartiles based on their CO₂ emission levels. This segmentation helps identify trends and compare emission patterns among the lowest and highest emitting nations.
+""")
     df_2020_features["co2_quartile"] = pd.qcut(df_2020_features["co2_emissions_kt"], q=4, labels=["Q1 (Low)", "Q2", "Q3", "Q4 (High)"])
     fig_quartile = px.box(df_2020_features, x="co2_quartile", y="co2_emissions_kt",
                           title="CO₂ Emissions by Quartile (2020)", color="co2_quartile", points="all", hover_name="country")
