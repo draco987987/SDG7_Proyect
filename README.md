@@ -151,7 +151,7 @@ For technical users, data transformations and analytical logic are traceable in 
 ## Deployment
 ### Heroku
 
-* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
+* The App live link is: https://sdg7-4e4a2bdd3507.herokuapp.com/
 * Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
 * The project was deployed to Heroku using the following steps.
 
