@@ -40,9 +40,10 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and exported
 * **step 1:** Dataset Acquisition and exploratory data analysis. 
 * **step 2:** Data cleaning, formatting, renaming colums and dropping unused variables. 
 * **step 3:** Hypotheses testing and visual analytics (Correlation, growth rates, violinplots, choropleths)
-* **step 4:** Machine Learning using Random Forest to predict 2025 and 2030 access and emissions.
+* **step 4:** Model Switch to linear Regression due to interpretability and scope
 * **step 5:** Evaluation of model (R², MAE, RMSE) and export predictions
-* **step 6:** Dashboard creation (In progress).
+* **step 6:** Dashboard creation with streamlit (Interactive plots, filters etc)
+* **Step 7:** Deployment via Heroku
 
 ## The rationale to map the business requirements to the Data Visualisations
 * Choropleth maps: global visualisation of electricity access by year.
@@ -50,6 +51,25 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and exported
 * Correlation matrix: reveal underlying relationships.
 * Scatter plots: support hypotheses with trendlines.
 * Time series line charts: progress over decades.
+* Box plots: Highlight variation across indicators and countries.
+
+# Modeling decision: Linear Regression vs Random Forest
+* Originally, a Random Forest Regressor was used for predictive modeling. However, the project pivoted to linear regression due to: 
+* - Simpler interpretability for non technical audiences
+* - Easier extraction of feature importance
+* - Absence of important parts of the data that justified a Random Forest
+
+# Limitations
+* - Linear Regression assumes linearity, wich may not hold for all indicators.
+* - It is sensitive to outliers (Especially in CO2 emissions).
+* - Some countries lacked historical data, reducing reliability of predictions.
+
+# Model Evaluation
+The models were evaluated using:
+* - R² Coefficient of determination
+* - Mean absolute error (MAE)
+* - Root mean squared error (RMSE)
+these metrics were displayed alongside predicted vs actual charts for interpretability and in the EDA and visualization parts
 
 ## Analysis techniques used
 * Data cleaning (Pandas)
@@ -58,7 +78,7 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and exported
 * visualisation (Seaborn, Plotly, Matplotlib)
 * Predictive modelling (Random Forest Regressor)
 * Model evaluation (R²,Mae, RMSE)
-* The data has its problems, i have spend a lot of time cleaning and thinking what was the most optimate methot to clean the nan values, also i have a lot of problems with the creation of the random forest, it required much time online to see how i could do it
+* The data has its problems, i have spend a lot of time cleaning and thinking what was the most optimate methot to clean the nan values, also i have a lot of problems with the creation of the random forest, it required much time online to see how i could do it. Also the use of streamlit was time consuming
 * ChatGPT was used for ideation, code debugging, Markdwon generation and phrasing.
 
 ## Ethical considerations
@@ -68,10 +88,57 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and exported
 * Predictions should not be used for critical planning without expert review.
 
 ## Dashboard Design
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
-* Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
-* How were data insights communicated to technical and non-technical audiences?
-* Explain how the dashboard was designed to communicate complex data insights to different audiences. 
+This interactive dashboard was developed to suport Sustainable Development Goal 7 (SDG7), which aims to ensure access to affordable, reliable, sustainable, and modern energy for all by 2030. It uses historical data and linear predictions to analyze energy trends across more than 170 countries since the 2000s
+
+* **Quick summary** Overview of SDG7 and project goals
+* **Dashboard** An overview of global trends in nergy access and emissions with.
+* - Line chart: Evolution of electricity access for selected countries
+* - Choropleth map: Geographic distribution of electricity access by decade
+* - Scatter plot: Correlation between renewable capacity and electricity access.
+* - Box & Histogram: Distribution of CO₂ in 2020.
+* - Regional Box plot: Compares CO₂, emissions by continent.
+* - Quartile Box plot: Categorizes emisiions into quartiles for analysis.
+* **Country Overview** An overview of metrics by country
+* - 2000 vs 2020 metrics for key indicators.
+* - % Change with conditional coloring (Red = negative, green = positive).
+* - Regional context for the country.
+* - Useful for indentifying individual progress.
+* **Predictions (2030)** Merges actual 2020 data with model predictions for 2030
+* - Focus on access to clean fuels: 
+   - Top 10 countries with highest and lowest growth.
+   - Bar charts for comparison.
+   - Option to select custom countries for targeted analysis.
+* **Hypotheses and Validation**  Provides five interactive tabs to validate analytical hypotheses using viusal and statistical methods:
+- * Correlation Heatmap: Shows relationships among numerical variables in 2020.
+
+- * Hypothesis 1: GDP per capita vs Access to clean fuels.
+
+- * Hypothesis 2: Renewable capacity per capita vs Access to electricity.
+
+- * Hypothesis 3: Renewable energy share vs Energy intensity (efficiency).
+
+- *Hypothesis 4: Growth in renewable capacity vs Growth in CO₂ emissions (2000–2020).
+
+Each test includes:
+
+- * Scatter plots with trendlines.
+
+- * Statistical metrics (Pearson r, p-value).
+
+- * Violin/box/histogram charts for grouped distribution.
+
+* The dashboard was designed with both data experts and general audiences in mind. To achieve this.
+- * I used plain langueage and describe hypotheses, objectives and variable meanings.
+- * Use Tooltips, caption and section headers to offer quick explanation on charts, allowing non thecnical users to grasp key ideas.
+- * Key statistics, such as correlation coefficients and p-values are accompanied by interpretative text to make them meaningful to non experts.
+For technical users, data transformations and analytical logic are traceable in the codebase or visualized.
+
+* The visual desing and content strategy follow the next principles:
+* - User friendly layaout with sidebar navigation.
+* - Data storytelling through tabs and visuals.
+* - Visual diversity including line graphs, scatter plots, choropleths etc... To suit different data types and user preferences.
+* - color coded to help users intuitively understand directional trends.
+* - interactive controls like multiselect and sliders wich let users customize outputs.
 
 ## Unfixed Bugs
 * None affecting core functionality.
@@ -102,12 +169,13 @@ The dataset has been cleaned and preprocessed using Python (Pandas) and exported
 * **Matplotlib, Seaborn** - visualisation
 * **Plotly.express** - interactive charts
 * **Sklearn** - Random Forest, metrics
-
+* **Heroku** - App deployment
 
 ## Credits 
 
 * Dataset source: https://www.kaggle.com/datasets/anshtanwar/global-data-on-sustainable-energy
 * Code snippets inspired by Code Institute templates and online threads
+* Icons: Font Awesome
 
 ### Content 
 
