@@ -315,18 +315,28 @@ elif page == "Hypotheses":
 
     with tab1:
         st.subheader("Heatmap of Correlation Between Variables (2020)")
-        st.markdown(""" 
-        This heatmap shows how numerical variables correlate in 2020. Red = strong positive correlation, blue = strong negative.  
+        st.markdown("""
+        This heatmap shows how numerical variables correlate in 2020.  
+        Red = strong positive correlation, blue = strong negative.  
         Look for variables that move together (strong correlation) or in opposite directions (negative correlation).
         """)
+
         df_2020_corr = df_2020.select_dtypes(include="number").corr()
-        fig, ax = plt.subplots(figsize=(6, 4))
-        sns.heatmap(df_2020_corr, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5, ax=ax)
+
+        fig, ax = plt.subplots(figsize=(8, 4))  # Aumentamos tamaño
+        sns.heatmap(df_2020_corr,
+                    annot=True,
+                    fmt=".2f",
+                    cmap="coolwarm",
+                    cbar=True,
+                    square=True,
+                    linewidths=0.5,
+                    annot_kws={"size": 6})  
+
+        plt.xticks(rotation=45, ha="right", fontsize=6)
+        plt.yticks(rotation=0, fontsize=6)
         st.pyplot(fig)
         plt.clf()
-        st.markdown("""
-        **How to read this heatmap:** Values close to 1 or -1 indicate strong positive or negative correlations, respectively. Look for the darkest red (strong positive) or blue (strong negative) tiles for relevant insights.
-        """)
 
     with tab2:
         st.subheader("Hypothesis 1: GDP per Capita vs Access to Clean Fuels")
