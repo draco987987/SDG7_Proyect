@@ -178,10 +178,8 @@ For technical users, data transformations and analytical logic are traceable in 
 * Icons: Font Awesome
 
 ### Content 
-
-- The text for the Home page was taken from Wikipedia Article A
-- The icons were taken from [Font Awesome](https://fontawesome.com/)
+- The icons were taken from [Font Awesome]
 
 
 ## Acknowledgements
-* Thank to Code Institute mentors for iterative feedback, explanations and support
+* Thank to Code Institute mentors (Vasi) for iterative feedback, explanations and support
