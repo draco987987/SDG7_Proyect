@@ -177,9 +177,5 @@ For technical users, data transformations and analytical logic are traceable in 
 * Code snippets inspired by Code Institute templates and online threads
 * Icons: Font Awesome
 
-### Content 
-- The icons were taken from [Font Awesome]
-
-
 ## Acknowledgements
 * Thank to Code Institute mentors (Vasi) for iterative feedback, explanations and support
